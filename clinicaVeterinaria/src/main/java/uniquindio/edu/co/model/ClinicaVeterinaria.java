@@ -182,4 +182,35 @@ public class ClinicaVeterinaria {
     public void setListMascotas(List<Mascota> listMascotas) {
         this.listMascotas = listMascotas;
     }
+
+    public boolean palindromo(String nombre){
+        boolean palabraPalindroma = true;
+        int inicio = 0; //0
+        int fin = nombre.length()-1; //8
+        //     4 < 4
+        while(inicio<fin){
+            //       o                             o
+            if(nombre.charAt(inicio) != nombre.charAt(fin)){
+                palabraPalindroma = false;
+            }
+            inicio++;
+            fin--;
+        }
+        return palabraPalindroma;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
