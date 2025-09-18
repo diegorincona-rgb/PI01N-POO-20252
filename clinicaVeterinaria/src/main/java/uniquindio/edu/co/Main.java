@@ -22,6 +22,8 @@ public class Main {
             System.out.println("3. Registrar mascota");
             System.out.println("4. Agendar cita");
             System.out.println("5. Mostrar citas");
+            System.out.println("6. Mostrar propietarios palindromos");
+            System.out.println("7. Mostrar veterianarios vocales");
             System.out.println("0. Salir");
 
             System.out.println("\n Ingrese la opción que desea realizar: ");
@@ -38,7 +40,11 @@ public class Main {
                 asignarCita(clinicaVeterinaria);
             }else if(opcion == 5){
                 mostrarCita(clinicaVeterinaria);
-            }else if(opcion == 0){
+            }else if(opcion == 6){
+                mostrarPropietariosPalindromos(clinicaVeterinaria);
+            }else if(opcion == 7){
+                mostrarVeterinariosVocales(clinicaVeterinaria);
+            } else if(opcion == 0){
                 System.out.println("CHAO MUCHACHOS.....");
             }else{
                 System.out.println("Opción invalido");
@@ -82,16 +88,70 @@ public class Main {
     }
 
     public static void registrarMascota(ClinicaVeterinaria clinicaVeterinaria){
+        System.out.println("Ingrese el nombre de la mascota: ");
+        String nombre = scanner.nextLine().trim();
 
+        System.out.println("Ingrese la raza de la mascota: ");
+        String raza = scanner.nextLine().trim();
+
+        System.out.println("Ingrese el ID de la mascota; ");
+        int id = scanner.nextInt();
+        scanner.nextLine().trim();
+
+        System.out.print("Ingrese la cédula del propietario: ");
+        String cedulaProp = scanner.nextLine().trim();
+
+        Propietario propietario = clinicaVeterinaria.buscarPropietarioPorCedula(cedulaProp);
+
+        Mascota mascota = new Mascota(nombre, raza, id, propietario);
+
+        clinicaVeterinaria.registrarMascota(mascota);
+        System.out.println("Mascota registrada - OK");
     }
 
     public static void asignarCita(ClinicaVeterinaria clinicaVeterinaria){
+        System.out.println("Ingrese la fecha de la cita: ");
+        String fecha = scanner.nextLine().trim();
 
+        System.out.println("Ingrese la hora de la cita: ");
+        String hora = scanner.nextLine().trim();
+
+        System.out.println("Ingrese el id de la mascota: ");
+        int id = scanner.nextInt();
+        Mascota mascota = clinicaVeterinaria.buscarMascotaPorId(id);
+        scanner.nextLine().trim();
+
+        System.out.println("Ingrese la cedula del veterinario: ");
+        String cedula = scanner.nextLine().trim();
+        Veterinario veterinario = clinicaVeterinaria.buscarVeterinarioPorCedula(cedula);
+
+        Cita cita = new Cita(fecha, hora, mascota, veterinario);
+
+        clinicaVeterinaria.asignarCita(cita);
+        System.out.println("Cita registrada - OK");
     }
 
     public static void mostrarCita(ClinicaVeterinaria clinicaVeterinaria){
-
+        System.out.println("== Citas ==");
+        for (Cita cita : clinicaVeterinaria.getListCitas()) {
+            System.out.println(cita);
+        }
     }
 
+    public static void mostrarPropietariosPalindromos(ClinicaVeterinaria clinicaVeterinaria){
+        System.out.println("== Palindromos ==");
+        for (Propietario propietario : clinicaVeterinaria.getListPropietarios()) {
+            if(clinicaVeterinaria.palindromo(propietario.getNombre())){
+                System.out.println("- "+propietario.getNombre() + propietario.getCedula());
+            }
+        }
+    }
+
+    public static void mostrarVeterinariosVocales(ClinicaVeterinaria clinicaVeterinaria){
+        System.out.println("== Veterianrios vocales ==");
+        for (String informacion : clinicaVeterinaria.obtenerListaVeterinariosVocales()) {
+            System.out.println("- " + informacion);
+        }
+    }
 
 }

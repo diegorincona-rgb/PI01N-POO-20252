@@ -192,6 +192,7 @@ public class ClinicaVeterinaria {
             //       o                             o
             if(nombre.charAt(inicio) != nombre.charAt(fin)){
                 palabraPalindroma = false;
+                break;
             }
             inicio++;
             fin--;
@@ -199,18 +200,62 @@ public class ClinicaVeterinaria {
         return palabraPalindroma;
     }
 
+    public boolean esVocal(char letra){
+        boolean vocal = false;
+        if(letra == 'a' || letra == 'e' || letra == 'i' || letra == 'o' || letra == 'u'){
+            vocal = true;
+        }
+        return vocal;
+    }
 
+    public List<String> obtenerListaVeterinariosVocales(){
+        List<String> listaVeterinariosVocales = new ArrayList<>();
+        for(Veterinario veterinario : listVeterinarios){
+            String nombre = veterinario.getNombre();
+            int cont = 0;
 
+            for(int i = 0; i < nombre.length(); i++){
+                if(esVocal(nombre.charAt(i))){
+                    cont++;
+                }
+            }
 
+            if(cont>=3){
+                listaVeterinariosVocales.add(nombre + " total vocales: " + cont);
+            }
+        }
+        return listaVeterinariosVocales;
+    }
 
+    //------SOLUCIÓN ITEM 2 DEL PARCIAL 1
 
+    /**
+     * PUNTO A
+     * Implementar un método en la clase ClinicaVeterinaria que, dado el nombre de un veterinario, cuente cuántas citas tiene asignadas en la clínica veterinaria.
+     */
+    public int contarCitasDeVeterinario(String nombreVeterinario) {
+        int contador = 0;
+        String fechaHoy = "09/09/2025";
+        for (Cita cita : listCitas) {
+            if (cita.getFecha().equals(fechaHoy) && cita.getTheVeterinario().getNombre().equals(nombreVeterinario)) {
+                contador++;
+            }
+        }
+        return contador;
+    }
 
-
-
-
-
-
-
-
+    /**
+     * PUNTO B
+     * Implementar un método en la clase ClinicaVeterinaria que, dado el nombre de un veterinario, retorne true si existe en la clínica, y false en caso contrario.
+     */
+    public boolean existeVeterinario(String nombreVeterinario) {
+        boolean exite = false;
+        for (Veterinario veterinario : listVeterinarios) {
+            if (veterinario.getNombre().equals(nombreVeterinario)) {
+                exite = true;
+            }
+        }
+        return exite;
+    }
 
 }

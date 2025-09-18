@@ -50,7 +50,7 @@ public class Propietario {
      * Obtiene el nombre del propietario.
      * @return nombre del propietario
      */
-    public String getNombre(String nombre){
+    public String getNombre(){
         return nombre;
     }
 
