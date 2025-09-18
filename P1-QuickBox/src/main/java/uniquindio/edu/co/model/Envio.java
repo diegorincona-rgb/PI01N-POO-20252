@@ -88,7 +88,7 @@ public class Envio {
         this.ruta = ruta;
         this.repartidor = repartidor;
 
-        // copia defensiva de paquetes
+        // lista paquetes
         this.paquetes = new ArrayList<>();
         if (paquetesIniciales != null) {
             this.paquetes.addAll(paquetesIniciales);
