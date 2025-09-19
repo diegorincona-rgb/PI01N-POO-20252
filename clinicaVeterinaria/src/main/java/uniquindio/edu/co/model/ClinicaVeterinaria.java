@@ -253,6 +253,7 @@ public class ClinicaVeterinaria {
         for (Veterinario veterinario : listVeterinarios) {
             if (veterinario.getNombre().equals(nombreVeterinario)) {
                 exite = true;
+                break;
             }
         }
         return exite;

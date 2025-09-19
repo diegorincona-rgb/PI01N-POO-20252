@@ -57,7 +57,7 @@ public class Envio {
     private Cliente cliente;
 
     /** Lista de paquetes incluidos en el envío. */
-    private final List<Paquete> paquetes;
+    private final List<Paquete> listPaqueteEnvio;
 
     /** Repartidor encargado del envío. */
     private Repartidor repartidor;
@@ -81,7 +81,7 @@ public class Envio {
         this.modalidad = modalidad;
         this.metodoPago = metodoPago;
         this.costoBase = costoBase;
-        this.estado = ESTADO_CREADO;
+        this.estado = "Creado";
 
         // relaciones
         this.cliente = cliente;
@@ -89,9 +89,9 @@ public class Envio {
         this.repartidor = repartidor;
 
         // lista paquetes
-        this.paquetes = new ArrayList<>();
+        this.listPaqueteEnvio = new ArrayList<>();
         if (paquetesIniciales != null) {
-            this.paquetes.addAll(paquetesIniciales);
+            this.listPaqueteEnvio.addAll(paquetesIniciales);
         }
     }
 
@@ -103,7 +103,7 @@ public class Envio {
      * @return true si se agregó correctamente
      */
     public boolean agregarPaquete(Paquete paquete) {
-        return paquetes.add(paquete);
+        return listPaqueteEnvio.add(paquete);
     }
 
     /**
@@ -112,7 +112,7 @@ public class Envio {
      */
     public double calcularPesoTotalKg() {
         double total = 0.0;
-        for (Paquete paquete : paquetes) {
+        for (Paquete paquete : listPaqueteEnvio) {
             total += paquete.getPesoKg();
         }
         return total;
@@ -124,7 +124,7 @@ public class Envio {
      */
     public double calcularVolumenTotalCm3() {
         double total = 0.0;
-        for (Paquete paquete : paquetes) {
+        for (Paquete paquete : listPaqueteEnvio) {
             total += paquete.calcularVolumenCm3();
         }
         return total;
@@ -205,7 +205,7 @@ public class Envio {
      * @return monto adicional en pesos
      */
     public double calcularRecargoFragilidad() {
-        for (Paquete paquete : paquetes) {
+        for (Paquete paquete : listPaqueteEnvio) {
             if (paquete.isFragil()) {
                 return 5000.0;
             }
@@ -271,7 +271,7 @@ public class Envio {
                 ", costoBase=" + costoBase +
                 ", ruta=" + ruta +
                 ", cliente=" + cliente +
-                ", paquetes=" + paquetes +
+                ", paquetes=" + listPaqueteEnvio +
                 ", repartidor=" + repartidor +
                 '}';
     }
