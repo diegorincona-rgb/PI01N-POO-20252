@@ -45,10 +45,10 @@ public class Agenda {
         boolean bandera = false;
         for(Contacto cont : listContactos){
             if(cont.getTelefono() == contacto.getTelefono()){
-                bandera = true; // ya existe el contacto
+                bandera = true;
             }
         }
-        return bandera; // No existe el contacto
+        return bandera;
     }
 
     /**
@@ -67,23 +67,6 @@ public class Agenda {
     }
 
     /**
-     * Metodo para determianr que proveedores tienen un numero de telefono capicuo
-     * @return proveedoresCapicuas
-     */
-    public List<Contacto> obtenerProveederoresCapicua(){
-        List<Contacto> proveedoresCapicuas = new ArrayList<>();
-        //Recorrer la lista de contactos
-        for(Contacto cont : listContactos){
-            if(cont instanceof Proveedor){
-                if(cont.isNumeroCapicuo(cont.getTelefono())){
-                    proveedoresCapicuas.add(cont);
-                }
-            }
-        }
-        return proveedoresCapicuas;
-    }
-
-    /**
      * Metodo para ordernar contactos por nombre
      */
     public void ordenarContactosPorNombre(){
@@ -98,6 +81,43 @@ public class Agenda {
                 }
             }
         }
+    }
+
+    /**
+     * PUNTO 2B
+     * Metodo que permite contar la cantidad de clientes por nivel de fidelidad
+     * @param nivel nivel de fidelidad a buscar
+     * @return cantidad de clientes que tienen ese nivel
+     */
+    public int contarClientesPorNivel(NivelFidelidad nivel) {
+        int contador = 0;
+
+        for (Contacto c : listContactos) {
+            if (c instanceof Cliente) {
+                Cliente cli = (Cliente) c;
+                if (cli.getNivelFidelidad() == nivel) {
+                    contador++;
+                }
+            }
+        }
+        return contador;
+    }
+
+    /**
+     * Metodo para determianr que proveedores tienen un numero de telefono capicuo
+     * @return proveedoresCapicuas
+     */
+    public List<Contacto> obtenerProveederoresCapicua(){
+        List<Contacto> proveedoresCapicuas = new ArrayList<>();
+        //Recorrer la lista de contactos
+        for(Contacto cont : listContactos){
+            if(cont instanceof Proveedor){
+                if(cont.isNumeroCapicuo(cont.getTelefono())){
+                    proveedoresCapicuas.add(cont);
+                }
+            }
+        }
+        return proveedoresCapicuas;
     }
 
 }

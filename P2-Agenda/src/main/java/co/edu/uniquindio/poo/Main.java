@@ -5,7 +5,7 @@ import co.edu.uniquindio.poo.model.*;
 import java.util.List;
 
 public class Main {
-    
+
     public static void main(String[] args) {
 
         //Crear agenda
@@ -42,6 +42,18 @@ public class Main {
                 System.out.println(cont.getNombre() + " es un proveedor");
             }
         }
+
+        // Contar clientes por nivel de fidelidad
+        System.out.println("\n----Conteo de clientes por nivel de fidelidad----");
+        int cantidadAltos = agenda.contarClientesPorNivel(NivelFidelidad.ALTO);
+        int cantidadMedios = agenda.contarClientesPorNivel(NivelFidelidad.MEDIO);
+        int cantidadBajos = agenda.contarClientesPorNivel(NivelFidelidad.BAJO);
+
+        System.out.println("Clientes con fidelidad ALTO: " + cantidadAltos);
+        System.out.println("Clientes con fidelidad MEDIO: " + cantidadMedios);
+        System.out.println("Clientes con fidelidad BAJO: " + cantidadBajos);
+
+
     }
 
 }

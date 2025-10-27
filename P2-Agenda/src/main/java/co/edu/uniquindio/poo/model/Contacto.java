@@ -13,6 +13,7 @@ public class Contacto {
     }
 
     /**
+     * PUNTO 2A
      * Metodo que permite determinar si un numero es capicuo
      * @param telefono
      * @return
