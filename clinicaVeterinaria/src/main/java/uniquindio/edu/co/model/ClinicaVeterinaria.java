@@ -41,7 +41,7 @@ public class ClinicaVeterinaria {
      * Metodo que registra un nuevo propietario en la clínica veterinaria
      * @param propietario objeto {@link Propietario} que se desea registrar
      */
-    public void registrarPropietario(Propietario propietario){
+    public void registrarPropietario(Propietario propietario) {
         listPropietarios.add(propietario);
     }
 
