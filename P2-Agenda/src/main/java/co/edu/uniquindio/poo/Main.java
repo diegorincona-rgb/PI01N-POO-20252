@@ -12,7 +12,7 @@ public class Main {
         Agenda agenda = new Agenda(123, "El Quindiano");
 
         //Crear los contactos
-        Contacto cliente1 = new Cliente("Pedro", 310222, "pedro@gmail.com", NivelFidelidad.ALTO);
+        Cliente cliente1 = new Cliente("Pedro", 310222, "pedro@gmail.com", NivelFidelidad.ALTO);
         Contacto cliente2 = new Cliente("Zara", 310772, "zara@gmail.com", NivelFidelidad.MEDIO);
         Contacto proveedor1 = new Proveedor("Ana", 1234321, "ana@gmail.com", "UQ");
         Contacto proveedor2 = new Proveedor("Natalia", 12321, "natalia@gmail.com", "Univalle");
