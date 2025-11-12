@@ -21,10 +21,8 @@ public class Contacto {
     public boolean isNumeroCapicuo(int telefono){
         boolean numeroCapicuo = true;
         String numero = String.valueOf(telefono);
-
         int inicio = 0;
         int fin = numero.length()-1;
-
         while (inicio < fin){
             if(numero.charAt(inicio) != numero.charAt(fin)){
                 numeroCapicuo = false;
